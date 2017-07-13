@@ -8,13 +8,23 @@
       vm.registrationForm = {};
 
       vm.submit = submit;
+      vm.remove = remove;
 
       function submit() {
         vm.isSpinnerVisible = true;
         var user = {};
         angular.copy(vm.registrationForm, user);
-        localStorage.users.push(user);
-        vm.isSpinnerVisible = true;
+        vm.users.push(user);
+        vm.isSpinnerVisible = false;
+      }
+
+      function remove(user) {
+        console.log(vm.users);
+        var index;
+        if (user) {
+          index = vm.users.indexOf(user);
+          vm.users.splice(index, 1);
+        }
       }
 
       function reset() {

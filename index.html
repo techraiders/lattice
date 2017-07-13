@@ -70,7 +70,7 @@
                   </fieldset>
                   <fieldset class="form-group col-sm-3">
                     <label for="password" class="control-label">Password: <sup>*</sup></label>
-                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password" data-ng-model="vm.registrationForm.password" ng-required="true" data-ng-minlength="7">
+                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password" data-ng-model="vm.registrationForm.password" ng-required="true">
                     <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.password.$touched" ng-messages="registrationForm.password.$error">
                       <div ng-messages-include="messages.html"></div>
                     </div>
@@ -94,7 +94,7 @@
     </div>
     <!-- row -->
     <div class="row" data-ng-if="vm.users.length > 0">
-      <div class="col-sm-6 col-sm-offset-3">
+      <div class="col-sm-8 col-sm-offset-2">
         <div class="table-responsive">
           <table class="table table-bordered">
             <caption> LIST OF USERS </caption>
@@ -105,6 +105,7 @@
                 <th> USERNAME </th>
                 <th> EMAIL </th>
                 <th> PASSWORD </th>
+                <th> MODERATE </th>
               </tr>
             </thead>
             <tbody>
@@ -113,7 +114,13 @@
                 <td> {{user.fullname}} </td>
                 <td> {{user.username}} </td>
                 <td> {{user.email}} </td>
-                <td> {{user.password}} </td>
+                <td> {{user.password}}
+                </td>
+                <td>
+                  <button data-ng-click="vm.remove(user)">
+                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
