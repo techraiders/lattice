@@ -3,15 +3,18 @@
   angular.module('latticeApp', ['ngMessages'])
     .controller('formController', [function() {
       var vm = this;
+      vm.isSpinnerVisible = false;
       vm.users = [];
       vm.registrationForm = {};
 
       vm.submit = submit;
 
       function submit() {
+        vm.isSpinnerVisible = true;
         var user = {};
         angular.copy(vm.registrationForm, user);
-        vm.users.push(user);
+        localStorage.users.push(user);
+        vm.isSpinnerVisible = true;
       }
 
       function reset() {

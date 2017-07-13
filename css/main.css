@@ -15,3 +15,10 @@ footer {
 .help-block {
     color: red;
 }
+
+#spinner {
+    position: fixed;
+    left: 48%;
+    top: 45%;
+    z-index: 10;
+}

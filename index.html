@@ -27,6 +27,10 @@
 </head>
 
 <body>
+  <span id="spinner" data-ng-if="vm.isSpinnerVisible">
+    <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+  </span>
+  <span class="sr-only">Loading...</span>
   <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -66,7 +70,7 @@
                   </fieldset>
                   <fieldset class="form-group col-sm-3">
                     <label for="password" class="control-label">Password: <sup>*</sup></label>
-                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password" data-ng-model="vm.registrationForm.password" ng-required="true">
+                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password" data-ng-model="vm.registrationForm.password" ng-required="true" data-ng-minlength="7">
                     <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.password.$touched" ng-messages="registrationForm.password.$error">
                       <div ng-messages-include="messages.html"></div>
                     </div>
