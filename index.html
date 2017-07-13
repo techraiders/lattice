@@ -1,0 +1,136 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="" data-ng-app="latticeApp">
+<!--<![endif]-->
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Welcome to Lattice Innovations</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+  <style>
+  body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+  }
+  </style>
+  <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="css/main.css">
+  <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+</head>
+
+<body>
+  <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+  <div class="container" data-ng-controller="formController as vm">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1">
+        <div class="panel panel-info">
+          <header class="panel-heading form-header">
+            <h4> Create your account</h4>
+          </header>
+          <!-- panel-heading -->
+          <div class="panel-body">
+            <form name="registrationForm" novalidate data-ng-submit="registrationForm.$valid && vm.submit()">
+              <fieldset>
+                <legend> Enter user details </legend>
+                <section class="row">
+                  <fieldset class="form-group col-sm-3">
+                    <label for="fullname" class="control-label">Full name: </label>
+                    <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Enter Full name" data-ng-model="vm.registrationForm.fullname" data-ng-pattern="/^[a-zA-Z ]*$/">
+                    <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.fullname.$touched" ng-messages="registrationForm.fullname.$error">
+                      <div ng-messages-include="messages.html"></div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form-group col-sm-3">
+                    <label for="username" class="control-label">Username:<sup>*</sup></label>
+                    <input type="text" id="username" name="username" class="form-control" placeholder="Enter Username" data-ng-model="vm.registrationForm.username" ng-required="true" data-ng-pattern="/^[a-zA-Z0-9]*$/">
+                    <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.username.$touched" ng-messages="registrationForm.username.$error">
+                      <div ng-messages-include="messages.html"></div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form-group col-sm-3">
+                    <label for="email" class="control-label">Email: <sup>*</sup></label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" data-ng-model="vm.registrationForm.email" ng-required="true" data-ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/">
+                    <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.email.$touched" ng-messages="registrationForm.email.$error">
+                      <div ng-messages-include="messages.html"></div>
+                    </div>
+                  </fieldset>
+                  <fieldset class="form-group col-sm-3">
+                    <label for="password" class="control-label">Password: <sup>*</sup></label>
+                    <input type="text" id="password" name="password" class="form-control" placeholder="Enter Password" data-ng-model="vm.registrationForm.password" ng-required="true">
+                    <div class="help-block" ng-if="registrationForm.$submitted || registrationForm.password.$touched" ng-messages="registrationForm.password.$error">
+                      <div ng-messages-include="messages.html"></div>
+                    </div>
+                  </fieldset>
+                </section>
+                <div class="row">
+                  <input type="submit" value="SUBMIT" class="col-sm-2 col-sm-offset-4 btn btn-success" data-ng-disabled="registrationForm.$invalid">
+                  <input type="reset" value="RESET" class="col-sm-2 btn btn-warning" data-ng-click="vm.reset()">
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <!-- panel-body -->
+          <footer class="panel-footer">
+            <h5>End of User Details</h5>
+          </footer>
+        </div>
+        <!-- panel -->
+      </div>
+      <!-- col -->
+    </div>
+    <!-- row -->
+    <div class="row" data-ng-if="vm.users.length > 0">
+      <div class="col-sm-6 col-sm-offset-3">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <caption> LIST OF USERS </caption>
+            <thead>
+              <tr class="bg-success">
+                <th>SR.NO.</th>
+                <th> FULLNAME </th>
+                <th> USERNAME </th>
+                <th> EMAIL </th>
+                <th> PASSWORD </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-ng-repeat="user in vm.users track by $index">
+                <td> {{ $index + 1 + '.'}}</td>
+                <td> {{user.fullname}} </td>
+                <td> {{user.username}} </td>
+                <td> {{user.email}} </td>
+                <td> {{user.password}} </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- container -->
+  <footer>
+    <p>&copy; Lattice Innovations 2015</p>
+  </footer>
+  </div>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.js"></script>
+  <script>
+  window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.js"><\/script>')
+  </script>
+  <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-messages/angular-messages.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/app/app.js"></script>
+</body>
+
+</html>

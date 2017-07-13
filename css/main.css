@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+sup {
+    color: red;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+footer {
+    text-align: center;
+}
+
+.help-block {
+    color: red;
+}
